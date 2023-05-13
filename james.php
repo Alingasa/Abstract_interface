@@ -1,5 +1,12 @@
 <?php
 
+
+// interface All
+// {
+//     public function create()
+// }
+
+
 abstract class Database
 {
     public $conn;
@@ -7,21 +14,29 @@ abstract class Database
     public $username = "root";
     public $password = "";
     public $dbName = "james";
-    public function __construct($conn)
+    public function __construct()
     {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password);
-        $db = "CREATE DATABASE IF NOT EXISTS $this->dbName";
-        $this->conn->query($db);
-        return $this->conn;
-
+       $this->conn = new mysqli($this->servername, $this->username, $this->password);
     }
-    abstract public function db($dbName): string;
+    abstract public function db(): string;
 }
 
-class user extends Database
+class DbName extends Database
 {
-    public function db(): string;
-    {
-        return $this->conn;
+    public function db(): string
+    { 
+        $dbName = "CREATE DATABASE IF NOT EXISTS $this->dbName";
+       return $this->conn->query($dbName);
     }
 }
+// class Createtbl extends Database implements All
+// {
+//     public function db(): string{
+//         $create = $this->conn->query("CREATE TABLE IF NOT EXISTS")
+//     }
+//     }
+
+
+$new = new DbName();
+$new->db();
+
