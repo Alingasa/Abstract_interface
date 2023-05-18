@@ -5,9 +5,9 @@ include "classes.php";
 class Db extends Database
 {
   public $conn;
-  public $servername = "0.0.0.0";
+  public $servername = "localhost";
   public $username = "root";
-  public $password = "root";
+  public $password = "";
   public $dbName = "Activity";
   
   public function connect()
